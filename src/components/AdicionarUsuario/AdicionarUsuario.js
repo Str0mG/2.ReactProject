@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 
 import './AdicionarUsuario.css'
 
+const INITIAL_STATE = { 
+  usuario: { nome: '', sobrenome: '', email: '' } 
+}
+
 class AdicionarUsuario extends Component {
 
   constructor(props) {
     super(props)
 
-    this.state = { 
-      usuario: { nome: '', sobrenome: '', email: '' } 
-    }
+    this.state = INITIAL_STATE
 
     this.onChangeHandler = this.onChangeHandler.bind(this)
     this.onSubmitHandler = this.onSubmitHandler.bind(this)
@@ -25,7 +27,7 @@ class AdicionarUsuario extends Component {
     const id = Math.floor(Math.random() * 1000)
     const usuario = { ...this.state.usuario, id }
 
-    this.setState({ usuario: { nome: '', sobrenome: '', email: '' } })
+    this.setState(INITIAL_STATE)
     this.props.adicionarUsuario(usuario)
   }
 
