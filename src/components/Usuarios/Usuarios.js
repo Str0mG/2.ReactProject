@@ -9,8 +9,6 @@ class Usuarios extends Component {
     super(props)
     this.state = {
       usuarios: [
-        { id: 1, nome: 'João', sobrenome: 'Silva', email: 'joao@mail.com' },
-        { id: 2, nome: 'Maria', sobrenome: 'Santos', email: 'maria@mail.com' }
       ]
     }
 
@@ -30,6 +28,21 @@ class Usuarios extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('https://reqres.in/api/users')
+      .then(response => response.json())
+      .then(data => {
+
+        const usuarios = data.data.map(usuario => ({
+          id: usuario.id,
+          nome: usuario.first_name,
+          sobrenome: usuario.last_name,
+          email: usuario.email,
+        }))
+
+        this.setState({usuarios})
+      })
+  }
   render() {
     return (
       <>
