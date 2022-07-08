@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import './AdicionarUsuario.css'
 
-function AdicionarUsuario(props) {
+function AdicionarUsuario() {
   const [nome, setNome] = useState('')
   const [sobrenome, setSobrenome] = useState('')
   const [email, setEmail] = useState('')
@@ -18,13 +18,15 @@ function AdicionarUsuario(props) {
         'Content-Type': 'application/json'
       }
     })
-    .then(response => response.json())
-    .then(data => {
-      setNome('')
-      setSobrenome('')
-      setEmail('')
-      props.adicionarUsuario(data)
+    .then(response => {
+      if (response.ok) {
+        setNome('')
+        setSobrenome('')
+        setEmail('')
+        alert('Usuário adicionado com sucesso!')
+      }
     })
+    
   }
 
   return (
