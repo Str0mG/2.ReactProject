@@ -36,7 +36,7 @@ function AdicionarUsuario() {
     .then(response => {
       if (response.ok) {
         resetForm();
-        alert('Usuário adicionado com sucesso!')
+        alert('Usuário adicionado com sucesso :)')
         
       }
     })
